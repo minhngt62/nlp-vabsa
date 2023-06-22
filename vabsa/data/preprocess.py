@@ -1,5 +1,6 @@
 import regex as re
 from underthesea import word_tokenize
+import string
 
 # remove html tags
 def remove_html(txt):
@@ -224,4 +225,4 @@ def text_preprocess(document):
     document = document.lower()
     # xóa các ký tự không cần thiết
     document = remove_unnecessary(document)
-    return document
+    return document.translate(str.maketrans(string.punctuation, ' ' * len(string.punctuation))).replace(' '*4, ' ').replace(' '*3, ' ').replace(' '*2, ' ').strip()
