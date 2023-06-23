@@ -1,7 +1,6 @@
 from sklearn.feature_extraction.text import TfidfVectorizer
 
 class DenseTfidfVectorizer(TfidfVectorizer):
-
     def transform(self, raw_documents):
         X = super().transform(raw_documents)
         return X.toarray()
