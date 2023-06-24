@@ -3,6 +3,7 @@ import gensim
 from gensim.corpora import Dictionary
 from gensim.models import CoherenceModel
 import os
+import numpy as np
 
 class DenseTfidfVectorizer(TfidfVectorizer):
     def transform(self, raw_documents):
@@ -14,15 +15,15 @@ class DenseTfidfVectorizer(TfidfVectorizer):
         return X.toarray()
     
 class LDA:
-    def __init__(self, num_topics=48, chunksize=256, alpha=0.1, eta=0.1, iterations=100):
-        self.ckpts_dir = "/kaggle/working/"
+    def __init__(self, ckpts_dir="checkpoints", num_topics=48, alpha=0.1, eta=0.1, iterations=100):
+        self.ckpts_dir = ckpts_dir
         self.params = {'num_topics':num_topics, 'alpha':alpha, 'eta':eta, 'iterations':iterations}
         self.model = None
 
-    def fit(self, X_train):
-        self.X_train = X_train
-        self.dictionary = Dictionary(text.split() for text in X_train)
-        self.train_corpus = [self.dictionary.doc2bow(text.split()) for text in X_train] # (word_idx, freq_count)
+    def fit(self, X, y=None):
+        self.X = X
+        self.dictionary = Dictionary(text.split() for text in X)
+        self.train_corpus = [self.dictionary.doc2bow(text.split()) for text in X] # (word_idx, freq_count)
         self.model = gensim.models.LdaMulticore(id2word=self.dictionary, minimum_probability=0.000, **self.params)
         self.model.update(self.train_corpus)
         return self
@@ -46,7 +47,7 @@ class LDA:
         return np.array(result)
     
     def score(self, *args, **kwargs):
-        score_fn = CoherenceModel(model=self.model, texts=[text.split() for text in self.X_train], dictionary=self.dictionary, coherence='c_v')
+        score_fn = CoherenceModel(model=self.model, texts=[text.split() for text in self.X], dictionary=self.dictionary, coherence='c_v')
         return score_fn.get_coherence()
     
     def get_params(self, deep=False):
