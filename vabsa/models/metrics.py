@@ -1,6 +1,6 @@
 import numpy as np
 
-def multioutput_f1(y_pred, y):
+def multioutput_f1(y, y_pred):
     final_f1 = 0
     eps = 1e-7
     for i in range(len(y)):
