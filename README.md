@@ -16,7 +16,7 @@ Understanding the comments, feedback, and opinions of users, clients, and custom
 ---
 To reproduce the experiments in notebooks, we notice that the file paths should be added with the corresponding parent directories. Also, when re-running the code, providing a cell `%cd` to `vabsa` will eliminate the issues of importing source code. For more details, please follow the section below.
 
-## Experimental Setup
+## Guidelines 
 
 1. Install required libraries:
    ```
@@ -24,5 +24,9 @@ To reproduce the experiments in notebooks, we notice that the file paths should 
    ```
    Some methods will require more, specified libraries that are `requirements.txt` located in `vabsa/<method_name>`. Please install them as well if you need to re-run the programs.
 2. Download the checkpoint directories for the methods from: [CHECKPOINTS](https://husteduvn-my.sharepoint.com/personal/minh_nt204885_sis_hust_edu_vn/_layouts/15/onedrive.aspx?id=%2Fpersonal%2Fminh%5Fnt204885%5Fsis%5Fhust%5Fedu%5Fvn%2FDocuments%2F2022%2E2%5FNLP%5FCheckpoints&view=0). Put each checkpoint directory under `./checkpoints` for usage.
+4. Run the demo:
+   ```
+   !python vabsa\roberta\train.py
+   ```
 
 
