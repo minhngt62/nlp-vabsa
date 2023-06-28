@@ -15,7 +15,14 @@ class DenseTfidfVectorizer(TfidfVectorizer):
         return X.toarray()
     
 class LDA:
-    def __init__(self, ckpts_dir="checkpoints", num_topics=48, alpha=0.1, eta=0.1, iterations=100):
+    def __init__(
+        self, 
+        ckpts_dir="checkpoints", 
+        num_topics=48, 
+        alpha=0.1, 
+        eta=0.1, 
+        iterations=1000
+    ):
         self.ckpts_dir = ckpts_dir
         self.params = {'num_topics':num_topics, 'alpha':alpha, 'eta':eta, 'iterations':iterations}
         self.model = None
@@ -39,7 +46,6 @@ class LDA:
     def predict(self, document:str):
         document = document.split()
         document = self.dictionary.doc2bow(document)
-        
         topics =  self.model.get_document_topics(document)
         result = []
         for topic in topics:
