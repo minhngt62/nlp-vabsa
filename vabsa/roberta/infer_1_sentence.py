@@ -12,7 +12,7 @@ import re
 
 device = 'cuda'
 
-model = RobertaForSequenceClassification.from_pretrained("RoBERTa/Checkpoint/checkpoint-24431", num_labels=4).to(device).eval()
+model = RobertaForSequenceClassification.from_pretrained("checkpoints\\roberta", num_labels=4).to(device).eval()
 tokenizer = AutoTokenizer.from_pretrained("vinai/phobert-base")
 
 def normalize_money(sent):
