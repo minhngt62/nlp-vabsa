@@ -10,14 +10,14 @@ Original file is located at
 import pandas as pd
 import torch
 from transformers import BertTokenizer
-base_dir = "/RoBERTa/"
+base_dir = "roberta/"
 import numpy as np
 from scipy.special import softmax
 import evaluation
 from transformers import AutoTokenizer
-train = pd.read_csv("RoBERTa/prepared_data/prepared_train.csv")
-valid = pd.read_csv("RoBERTa/prepared_data/prepared_valid.csv")
-test = pd.read_csv("RoBERTa/prepared_data/prepared_valid.csv")
+train = pd.read_csv("datasets/preprocessed/roberta/prepared_train.csv")
+valid = pd.read_csv("datasets/preprocessed/roberta/prepared_valid.csv")
+test = pd.read_csv("datasets/preprocessed/roberta/prepared_test.csv")
 num_class = 4
 
 test.info()
@@ -93,7 +93,7 @@ def get_predictions(data):
     return predicted_labels, scores
 
 def compute_metrics(predictions):
-    df_csv = pd.read_csv("RoBERTa/prepared_data/prepared_train.csv")
+    df_csv = pd.read_csv("datasets/preprocessed/roberta/prepared_valid.csv")
     scores = [softmax(prediction) for prediction in predictions[0]]
     predicted_labels = [np.argmax(x) for x in scores]
     data = np.insert(scores, 0, predicted_labels, axis=1)

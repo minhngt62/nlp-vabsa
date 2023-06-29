@@ -10,9 +10,9 @@ warnings.filterwarnings("ignore")
 
 device = 'cuda'
 
-model = RobertaForSequenceClassification.from_pretrained("RoBERTa/Checkpoint/checkpoint-24431", num_labels=4).to(device).eval()
+model = RobertaForSequenceClassification.from_pretrained("checkpoint\\roberta", num_labels=4).to(device).eval()
 tokenizer = AutoTokenizer.from_pretrained("vinai/phobert-base")
-test = pd.read_csv("RoBERTa/prepared_data/prepared_test.csv")
+test = pd.read_csv("datasets/preprocessed/roberta/prepared_test.csv")
 
 predictions = []
 labels = []

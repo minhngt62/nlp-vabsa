@@ -13,7 +13,7 @@ import re
 device = 'cuda'
 
 model = RobertaForSequenceClassification.from_pretrained("checkpoints\\roberta", num_labels=4).to(device).eval()
-tokenizer = AutoTokenizer.from_pretrained("checkpoints\\roberta")
+tokenizer = AutoTokenizer.from_pretrained("vinai/phobert-base")
 
 def normalize_money(sent):
     return re.sub(r'[0-9]+[.,0-9][k-m-b]', 'giá', sent)
