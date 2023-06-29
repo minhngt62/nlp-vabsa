@@ -24,9 +24,8 @@ To reproduce the experiments in notebooks, we notice that the file paths should 
    ```
    Some methods will require more, specified libraries that are `requirements.txt` located in `vabsa/<method_name>`. Please install them as well if you need to re-run the programs.
 2. Download the checkpoint directories for the methods from: [CHECKPOINTS](https://husteduvn-my.sharepoint.com/personal/minh_nt204885_sis_hust_edu_vn/_layouts/15/onedrive.aspx?id=%2Fpersonal%2Fminh%5Fnt204885%5Fsis%5Fhust%5Fedu%5Fvn%2FDocuments%2F2022%2E2%5FNLP%5FCheckpoints&view=0). Put each checkpoint directory under `./checkpoints` for usage. For GatedCNN, please download [this](https://public.vinai.io/word2vec_vi_words_300dims.zip) and put each to the corresponding folder. 
-4. Run the demo:
+4. To run the demo: You may want to change the input review, please do that at the module itself
    ```
-   !python vabsa\roberta\vabsa\roberta\infer_1_sentence.py.py
+   !python vabsa\roberta\vabsa\roberta\infer_1_sentence.py
    ```
-
 
